@@ -8,4 +8,12 @@
 - Table RAG
 - Multimodal RAG
 - Agentic RAG
+- Web Search RAG
 - etc.
+
+## Getting started
+
+```bash
+uv venv --python 3.14
+uv sync
+```
