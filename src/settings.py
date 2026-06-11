@@ -22,3 +22,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+DATASETS_DIR = Path(__file__).parent / "datasets"
