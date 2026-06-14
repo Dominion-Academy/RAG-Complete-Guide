@@ -17,3 +17,12 @@
 uv venv --python 3.14
 uv sync
 ```
+
+## Detail Program
+
+### Introduction
+
+- [First RAG with ngrams](src/modules/first_rag/readme.md)
+
+### Vector Search
+

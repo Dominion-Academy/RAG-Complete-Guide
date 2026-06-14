@@ -16,13 +16,13 @@ class OpenAILikeError(Exception):
 
 class InputMessage(BaseModel):
     role: Literal["system", "user", "assistant"] = Field(description="Роль")
-    content: str = Field(description="Текст")
+    content: str = Field(description="Текст сообщения")
 
 
 class AIAnswer(BaseModel):
     content: str = Field(description="Текст ответа")
-    input_tokens: int = Field(description="Текст ответа")
-    output_tokens: int = Field(description="Текст ответа")
+    input_tokens: int = Field(description="Количество входных токенов")
+    output_tokens: int = Field(description="Количество выходных токенов")
 
     @property
     def message(self) -> InputMessage:

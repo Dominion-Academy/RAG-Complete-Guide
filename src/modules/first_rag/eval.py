@@ -2,7 +2,7 @@ import csv
 
 import asyncclick as click
 
-from src.modules.naive_rag.app import DATASET_DIR, NGramKnowledgeStorage, NGramRetriever
+from src.modules.first_rag.app import DATASET_DIR, NGramKnowledgeStorage, NGramRetriever
 
 
 def compute_hit_rate(retrieved_ids: list[int], relevant_ids: set[int]) -> float:
