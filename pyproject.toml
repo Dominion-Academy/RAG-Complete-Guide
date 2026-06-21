@@ -6,6 +6,9 @@ requires-python = ">=3.14"
 dependencies = [
     "asyncclick>=8.3.0.7",
     "click>=8.4.1",
+    "fastembed>=0.8.0",
+    "numpy>=2.4.6",
+    "ollama>=0.6.2",
     "openai>=2.41.0",
     "pydantic-settings>=2.14.1",
     "ruff>=0.15.16",
@@ -19,7 +22,7 @@ target-version = "py314"
 # Сортировка импортов
 src = ["src", "tests"]
 # Максимальная длина строки
-line-length = 120
+line-length = 130
 
 [tool.ruff.lint]
 # Все правила
@@ -75,7 +78,8 @@ ignore = [
     "EM102",   # Exception must not use an f-string literal
     # Кирилица в комментариях
     "RUF002",
-    "UP046"
+    "UP046",
+    "T201",   # print usage
 ]
 
 # Правила, которые должны быть исправлены автоматически
