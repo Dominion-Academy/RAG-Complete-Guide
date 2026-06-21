@@ -106,18 +106,14 @@ async def main(n: int, k: int, query: str) -> None:
 
     # Build prompt
     system_prompt = SYSTEM_PROMPT.substitute({"lang": "russian"})
-    user_prompt = USER_PROMPT.substitute(
-        {"query": query, "context": "\n\n".join([ek.text for ek in external_knowledge])}
-    )
+    user_prompt = USER_PROMPT.substitute({"query": query, "context": "\n\n".join([ek.text for ek in external_knowledge])})
     messages = [InputMessage(role="system", content=system_prompt), InputMessage(role="user", content=user_prompt)]
     click.echo(f"==== SYSTEM PROMPT ====\n{system_prompt}\n")
     click.echo(f"==== USER PROMPT ====\n{user_prompt}\n")
 
     # Call LLM
     answer = await llm.generate_answer(messages)
-    click.echo(
-        f"==== ANSWER ====\n{answer.content}\nInput tokens: {answer.input_tokens}\nOutput tokens: {answer.output_tokens}"
-    )
+    click.echo(f"==== ANSWER ====\n{answer.content}\nInput tokens: {answer.input_tokens}\nOutput tokens: {answer.output_tokens}")
 
 
 if __name__ == "__main__":
