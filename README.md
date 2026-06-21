@@ -26,10 +26,11 @@ uv sync
 
 ### Vector Based RAG
 
-- [Transformers BERT Embeddings usage](src/modules/vector_search/bert_embeddings/transformers_usage.py)
-- [Sentence Transformers BERT Embeddings usage](src/modules/vector_search/bert_embeddings/sentence_transformers_usage.py)
-- [FastEmbed BERT Embeddings usage](src/modules/vector_search/bert_embeddings/fastembed_usage.py)
-- [Ollama BERT Embeddings usage](src/modules/vector_search/bert_embeddings/ollama_usage.py)
+#### BERT Embeddings usage
+- [Transformers Example](src/modules/vector_search/bert_embeddings/transformers_usage.py)
+- [Sentence Transformers Example](src/modules/vector_search/bert_embeddings/sentence_transformers_usage.py)
+- [FastEmbed Example](src/modules/vector_search/bert_embeddings/fastembed_usage.py)
+- [Ollama Example](src/modules/vector_search/bert_embeddings/ollama_usage.py)
 
 
 
