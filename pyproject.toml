@@ -6,6 +6,8 @@ requires-python = ">=3.14"
 dependencies = [
     "asyncclick>=8.3.0.7",
     "click>=8.4.1",
+    "datasets>=5.0.0",
+    "faiss-cpu>=1.14.3",
     "fastembed>=0.8.0",
     "numpy>=2.4.6",
     "ollama>=0.6.2",

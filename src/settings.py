@@ -20,6 +20,8 @@ class Settings(BaseSettings):
 
     llm: LLMConfig = LLMConfig()
 
+    HF_TOKEN: str = Field(default="...", description="Токен доступа Hugging Face")
+
 
 settings = Settings()
 

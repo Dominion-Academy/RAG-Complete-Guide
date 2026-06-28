@@ -32,6 +32,10 @@ uv sync
 - [FastEmbed Example](src/modules/vector_search/bert_embeddings/fastembed_usage.py)
 - [Ollama Example](src/modules/vector_search/bert_embeddings/ollama_usage.py)
 
+#### FAISS
+
+- [Simple Example](src/modules/vector_search/vector_databases/faiss_example.py)
+- [HNSW Example](src/modules/vector_search/vector_databases/faiss_hnsw_example.py)
 
 
 ## Scripts

@@ -158,3 +158,8 @@ cython_debug/
 .idea/
 
 *.crt
+
+
+# extra
+src/datasets/falcon_refined_web/data.csv
+src/datasets/falcon_refined_web/evaluation.csv
