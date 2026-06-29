@@ -37,6 +37,10 @@ uv sync
 - [Simple Example](src/modules/vector_search/vector_databases/faiss_example.py)
 - [HNSW Example](src/modules/vector_search/vector_databases/faiss_hnsw_example.py)
 
+#### SQLite + sqlite-vec
+
+- [Simple Example](src/modules/vector_search/vector_databases/sqlite_vec_example.py)
+
 
 ## Scripts
 
