@@ -20,5 +20,15 @@ services:
     #           capabilities: [gpu]
 
 
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
 volumes:
   ollama_data:
+  pg_data:
