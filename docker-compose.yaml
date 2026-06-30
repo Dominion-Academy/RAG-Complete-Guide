@@ -29,6 +29,16 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
 
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
 volumes:
   ollama_data:
   pg_data:
+  qdrant_data:

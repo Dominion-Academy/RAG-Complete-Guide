@@ -46,6 +46,20 @@ uv sync
 - [Simple Example](src/modules/vector_search/vector_databases/pgvector_example.py)
 - [HNSW Example](src/modules/vector_search/vector_databases/pgvector_hnsw_example.py)
 
+#### Qdrant
+
+- [Simple Example](src/modules/vector_search/vector_databases/qdrant_example.py)
+- [HNSW Example](src/modules/vector_search/vector_databases/qdrant_hnsw_example.py)
+
+#### Chroma
+
+coming soon
+
+#### Milvus
+
+coming soon
+
+
 ## Scripts
 
 ### Linters
