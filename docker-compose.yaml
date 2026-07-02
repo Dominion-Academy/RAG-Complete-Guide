@@ -47,8 +47,26 @@ services:
     environment:
       - IS_PERSISTENT=TRUE
 
+  milvus:
+    image: milvusdb/milvus:v3.0-beta
+    command: [ "milvus", "run", "standalone" ]
+    environment:
+      ETCD_USE_EMBED: "true"
+      ETCD_DATA_DIR: /var/lib/milvus/etcd
+      ETCD_CONFIG_PATH: /milvus/configs/embedEtcd.yaml
+      COMMON_STORAGETYPE: local
+      DEPLOY_MODE: STANDALONE
+    volumes:
+      - milvus_data:/var/lib/milvus
+      - ./infra/milvus/embedEtcd.yaml:/milvus/configs/embedEtcd.yaml
+      - ./infra/milvus/user.yaml:/milvus/configs/user.yaml
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+
 volumes:
   ollama_data:
   pg_data:
   qdrant_data:
   chroma_data:
+  milvus_data:

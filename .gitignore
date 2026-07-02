@@ -163,3 +163,4 @@ cython_debug/
 # extra
 src/datasets/falcon_refined_web/data.csv
 src/datasets/falcon_refined_web/evaluation.csv
+src/modules/vector_search/vector_databases/milvus.db
