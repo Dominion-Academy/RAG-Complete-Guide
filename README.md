@@ -53,7 +53,8 @@ uv sync
 
 #### Chroma
 
-coming soon
+- [Simple Example](src/modules/vector_search/vector_databases/chroma_example.py)
+- [Advanced Example](src/modules/vector_search/vector_databases/chroma_advanced_example.py)
 
 #### Milvus
 

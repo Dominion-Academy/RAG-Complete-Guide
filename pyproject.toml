@@ -5,6 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = [
     "asyncclick>=8.3.0.7",
+    "chromadb>=1.5.9",
     "click>=8.4.1",
     "datasets>=5.0.0",
     "faiss-cpu>=1.14.3",

@@ -38,7 +38,17 @@ services:
     volumes:
       - qdrant_data:/qdrant/storage
 
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+
 volumes:
   ollama_data:
   pg_data:
   qdrant_data:
+  chroma_data:
