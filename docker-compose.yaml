@@ -64,9 +64,21 @@ services:
       - "19530:19530"
       - "9091:9091"
 
+  attu:
+    image: zilliz/attu:v3.0.0-beta.6
+    ports:
+      - "3000:3000"
+    environment:
+      - MILVUS_ADDRESS=milvus:19530
+    volumes:
+      - milvus_attu_data:/data
+    depends_on:
+      - milvus
+
 volumes:
   ollama_data:
   pg_data:
   qdrant_data:
   chroma_data:
   milvus_data:
+  milvus_attu_data:
