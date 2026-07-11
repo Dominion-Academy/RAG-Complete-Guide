@@ -57,9 +57,11 @@ uv sync
 - [Advanced Example](src/modules/vector_search/vector_databases/chroma_advanced_example.py)
 
 #### Milvus
-- 
 - [Simple Example](src/modules/vector_search/vector_databases/milvus_example.py)
 - [HNSW Example](src/modules/vector_search/vector_databases/milvus_hnsw_example.py)
+
+#### Canonical RAG (Qdrant + FastEmbed + split_by_words)
+- [Example](src/modules/vector_search/canonical_rag)
 
 
 ## Scripts

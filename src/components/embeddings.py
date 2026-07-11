@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 from fastembed import TextEmbedding
@@ -7,7 +8,19 @@ if TYPE_CHECKING:
     import numpy as np
 
 
-class FastEmbedEmbeddingsModel:
+class BaseEmbeddingsModel(ABC):
+    @property
+    @abstractmethod
+    def size(self) -> int: ...
+
+    @abstractmethod
+    def embed_query(self, query: str) -> np.ndarray: ...
+
+    @abstractmethod
+    def embed_document(self, documents: list[str]) -> list[np.ndarray]: ...
+
+
+class FastEmbedEmbeddingsModel(BaseEmbeddingsModel):
     """Возврашает уже нормализованные по длине(L2) векторы"""
 
     def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2") -> None:
