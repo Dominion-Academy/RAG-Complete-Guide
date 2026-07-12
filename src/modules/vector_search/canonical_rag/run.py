@@ -1,6 +1,5 @@
 from string import Template
 
-import asyncclick as click
 from qdrant_client import QdrantClient
 
 from src.components.embeddings import FastEmbedEmbeddingsModel
@@ -38,7 +37,7 @@ llm = SyncOpenAILikeLLM(
 
 # 2. Поиск фрагментов документов
 external_knowledge = retriever.retrieve(QUERY, top_k=TOP_K)
-click.echo(f"\nChunks:\n{'\n'.join([str(ek.metadata) + '\n' + ek.text for ek in external_knowledge])}")
+print(f"\nChunks:\n{'\n'.join([str(ek.metadata) + '\n' + ek.text for ek in external_knowledge])}")
 
 # 3. Подготовка сообщений для LLM
 system_prompt = SYSTEM_PROMPT.substitute({"lang": "english"})
@@ -47,4 +46,4 @@ messages = [InputMessage(role="system", content=system_prompt), InputMessage(rol
 
 # 4. Вызов LLM
 answer = llm.generate_answer(messages)
-click.echo(f"\nAnswer:\n{answer.content}\nInput tokens: {answer.input_tokens}\nOutput tokens: {answer.output_tokens}")
+print(f"\nAnswer:\n{answer.content}\nInput tokens: {answer.input_tokens}\nOutput tokens: {answer.output_tokens}")
