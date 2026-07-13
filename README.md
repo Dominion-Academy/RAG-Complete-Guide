@@ -32,6 +32,7 @@ uv sync
 |                     | Milvus                | [Simple Example](src/modules/vector_search/vector_databases/milvus_example.py), [HNSW Example](src/modules/vector_search/vector_databases/milvus_hnsw_example.py)                                                                                                                                                                  |
 |                     | Canonical RAG         | [Code](src/modules/vector_search/canonical_rag)                                                                                                                                                                                                                                                                                    |
 |                     | Text Splitters        | [By paragraph](src/modules/vector_search/text_spliiters_demo/split_by_paragraph_demo.py), [With overlap](src/modules/vector_search/text_spliiters_demo/split_by_chars_with_overlap_demo.py), [Recursive](src/modules/vector_search/text_spliiters_demo/recursive_split_demo.py)                                                    |
+|                     | Pre-Retrieval         | [Multi Query Rewriting](src/modules/vector_search/pre_retrieval/multi_query_rewriting.py), [Step Back Prompting](src/modules/vector_search/pre_retrieval/step_back_prompting.py), [HyDE](src/modules/vector_search/pre_retrieval/hyde.py)                                                                    |
 
 
 ## Scripts
