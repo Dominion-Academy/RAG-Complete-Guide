@@ -11,6 +11,7 @@ dependencies = [
     "faiss-cpu>=1.14.3",
     "fastembed>=0.8.0",
     "milvus-lite>=3.0",
+    "nltk>=3.10.0",
     "numpy>=2.4.6",
     "ollama>=0.6.2",
     "openai>=2.41.0",
@@ -19,6 +20,7 @@ dependencies = [
     "pydantic-settings>=2.14.1",
     "pymilvus[milvus-lite]>=3.0.0",
     "qdrant-client>=1.18.0",
+    "rank-bm25>=0.2.2",
     "ruff>=0.15.16",
     "sqlite-vec>=0.1.9",
 ]

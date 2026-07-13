@@ -4,13 +4,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 from qdrant_client import QdrantClient
-from qdrant_client.models import (
-    Distance,
-    HnswConfigDiff,
-    OptimizersConfigDiff,
-    PointStruct,
-    VectorParams,
-)
+from qdrant_client.models import Distance, HnswConfigDiff, OptimizersConfigDiff, PointStruct, VectorParams
 
 from src.components.embeddings import BaseEmbeddingsModel
 

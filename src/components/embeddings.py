@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from fastembed import TextEmbedding
+from fastembed import SparseTextEmbedding, TextEmbedding
+from qdrant_client.models import SparseVector
 
 
 if TYPE_CHECKING:
@@ -35,3 +36,29 @@ class FastEmbedEmbeddingsModel(BaseEmbeddingsModel):
 
     def embed_document(self, documents: list[str]) -> list[np.array]:
         return list(self._model.passage_embed(documents))
+
+
+class FastEmbedSparseEmbeddingsModel:
+    def __init__(self, model_name: str = "Qdrant/bm25", **kwargs) -> None:
+        """
+        Параметры для моделей:
+        - Qdrant/bm25 (k=1.2, b=0.75, avg_len=256)
+        """
+        self._model = SparseTextEmbedding(model_name=model_name, **kwargs)
+
+    def embed_query(self, query: str) -> SparseVector:
+        embedding = list(self._model.query_embed(query))[0]
+        return SparseVector(
+            values=embedding.values.tolist(),
+            indices=embedding.indices.tolist(),
+        )
+
+    def embed_document(self, documents: list[str]) -> list[SparseVector]:
+        embeddings = list(self._model.passage_embed(documents))
+        return [
+            SparseVector(
+                values=embedding.values.tolist(),
+                indices=embedding.indices.tolist(),
+            )
+            for embedding in embeddings
+        ]
