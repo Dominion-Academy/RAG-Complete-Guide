@@ -38,7 +38,15 @@ class FastEmbedEmbeddingsModel(BaseEmbeddingsModel):
         return list(self._model.passage_embed(documents))
 
 
-class FastEmbedSparseEmbeddingsModel:
+class BaseSparseEmbeddingsModel(ABC):
+    @abstractmethod
+    def embed_query(self, query: str) -> SparseVector: ...
+
+    @abstractmethod
+    def embed_document(self, documents: list[str]) -> list[SparseVector]: ...
+
+
+class FastEmbedSparseEmbeddingsModel(BaseSparseEmbeddingsModel):
     def __init__(self, model_name: str = "Qdrant/bm25", **kwargs) -> None:
         """
         Параметры для моделей:

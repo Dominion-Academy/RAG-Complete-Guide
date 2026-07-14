@@ -46,7 +46,7 @@ client.upsert(collection_name, points)
 
 # 6. Добавляем документы в хранилище
 SENDING_BATCH = 100
-for i in range(1, len(documents), SENDING_BATCH):
+for i in range(0, len(documents), SENDING_BATCH):
     client.upsert(collection_name, points[i : i + SENDING_BATCH])
 
 

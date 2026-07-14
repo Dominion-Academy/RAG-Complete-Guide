@@ -29,6 +29,6 @@ for idx, text in enumerate(texts):
 
 # 4. Добавляем документы в хранилище
 SENDING_BATCH = 100
-for i in range(1, len(documents), SENDING_BATCH):
+for i in range(0, len(documents), SENDING_BATCH):
     knowledge_storage.add_documents(documents[i : i + SENDING_BATCH])
 print("Готово")
