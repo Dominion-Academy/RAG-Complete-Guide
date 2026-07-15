@@ -35,10 +35,8 @@ class MultiQueryRewriter:
 
 class StepBackPromptingRewriter:
     SYSTEM_PROMPT = Template(
-        "You are a query reformulation assistant. "
-        "Given a specific question, produce a broader, "
-        "more abstract step‑back question that captures the core topic and underlying principles.  "
-        "Output ONLY the reformulated question – no explanations, no extra text."
+        "You are an expert at world knowledge. Your task is to step back and paraphrase a question to a more generic step-back question, "
+        "which is easier to answer. The step-back question should be broader and cover the underlying principles."
     )
     USER_PROMPT = Template("Original query: $query")
 
@@ -55,7 +53,10 @@ class StepBackPromptingRewriter:
 
 
 class HyDERewriter:
-    SYSTEM_PROMPT = Template("Please write a short passage to answer the query")
+    SYSTEM_PROMPT = Template(
+        "Write a detailed, factual passage that answers the given query. "
+        "The passage should contain specific entities, numbers, and dates. Do not say: I don't know"
+    )
     USER_PROMPT = Template("Original query: $query")
 
     def __init__(self, llm: SyncOpenAILikeLLM):

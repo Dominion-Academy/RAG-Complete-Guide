@@ -34,10 +34,10 @@ llm = SyncOpenAILikeLLM(
 rag = QdrantFusionRAG(client=client, collection_name=collection_name, dense_model=dense_model, sparse_model=splade_model, llm=llm)
 
 # 4. Создаем коллекцию
-# rag.create_collection(drop_if_exists=True)
+rag.create_collection(drop_if_exists=True)
 
 # 5. Добавляем в индекс документы
-# rag.add_documents(documents)
+rag.add_documents(documents)
 
 # 6. Запускаем генерацию
 query = "What is the Berry Export Summary 2028 and what is its purpose?"

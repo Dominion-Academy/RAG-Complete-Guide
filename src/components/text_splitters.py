@@ -37,12 +37,17 @@ def split_by_paragraph(text: str, sep: str = "\n\n") -> list[str]:
     return text.strip().split(sep)
 
 
-def recursive_split(text: str, max_chars: int, separators: list[str] | None = None, overlap: int = 0) -> list[str]:
+def recursive_split(
+    text: str,
+    max_chars: int,
+    separators: list[str] | None = None,
+    overlap: int = 0,
+) -> list[str]:
     if not text:
         return []
 
     if separators is None:
-        separators = ["\n\n", "\n"]
+        separators = ["\n\n", "\n", ". "]
 
     if not separators:
         return split_by_chars_with_overlap(text, max_chars, overlap)
@@ -52,13 +57,25 @@ def recursive_split(text: str, max_chars: int, separators: list[str] | None = No
 
     results = []
     current_chunk = ""
+
     for part in parts:
         if len(part) > max_chars:
+            if current_chunk:
+                results.append(current_chunk)
+                current_chunk = ""
             results.extend(recursive_split(part, max_chars, other_separators, overlap))
-        elif len(current_chunk + part) > max_chars:
-            results.append(current_chunk)
+            continue
+
+        candidate = current_chunk + part
+
+        if len(candidate) > max_chars:
+            if current_chunk:
+                results.append(current_chunk)
             current_chunk = part
         else:
-            current_chunk = current_chunk + part
+            current_chunk = candidate
+
+    if current_chunk:
+        results.append(current_chunk)
 
     return results

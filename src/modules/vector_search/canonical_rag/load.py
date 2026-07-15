@@ -10,7 +10,7 @@ from src.settings import DATASETS_DIR
 # 1. Загружаем данные
 DATASET_PATH = DATASETS_DIR / "falcon_refined_web" / "data.csv"
 df = pd.read_csv(DATASET_PATH, index_col=False)
-texts = df["text"].to_list()[:1000]
+texts = df["text"].to_list()[:100]
 
 # 2. Создаем хранилище
 knowledge_storage = QdrantCollectionKnowledgeStorage(
