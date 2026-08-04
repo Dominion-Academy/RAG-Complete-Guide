@@ -1,6 +1,9 @@
 # RAG Complete Guide
 
-## Structure
+<img width="1319" height="362" alt="image" src="https://github.com/user-attachments/assets/4af60b9d-d9ca-4f0d-8070-c41cb9b47fc6" />
+
+
+## Main topics
 
 - Vector Search RAG
 - Data Processing
