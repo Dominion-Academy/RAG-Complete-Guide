@@ -5,12 +5,15 @@ description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
     "asyncclick>=8.3.0.7",
+    "chardet>=7.4.3",
     "chromadb>=1.5.9",
-    "click>=8.4.1",
+    "click>=8.3.3",
     "datasets>=5.0.0",
+    "deepeval>=4.1.5",
     "faiss-cpu>=1.14.3",
     "fastembed>=0.8.0",
     "langchain-community<0.4",
+    "langchain-text-splitters>=1.1.2",
     "milvus-lite>=3.0",
     "nltk>=3.10.0",
     "numpy>=2.4.6",
