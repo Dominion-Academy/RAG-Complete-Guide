@@ -2,7 +2,7 @@
 name = "rag-complete-guide"
 version = "0.1.0"
 description = "Add your description here"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "asyncclick>=8.3.0.7",
     "chromadb>=1.5.9",
@@ -10,6 +10,7 @@ dependencies = [
     "datasets>=5.0.0",
     "faiss-cpu>=1.14.3",
     "fastembed>=0.8.0",
+    "langchain-community<0.4",
     "milvus-lite>=3.0",
     "nltk>=3.10.0",
     "numpy>=2.4.6",
@@ -20,7 +21,9 @@ dependencies = [
     "pydantic-settings>=2.14.1",
     "pymilvus[milvus-lite]>=3.0.0",
     "qdrant-client>=1.18.0",
+    "ragas==0.3.9",
     "rank-bm25>=0.2.2",
+    "rapidfuzz>=3.14.5",
     "ruff>=0.15.16",
     "sqlite-vec>=0.1.9",
 ]
@@ -29,7 +32,7 @@ dependencies = [
 
 [tool.ruff]
 # Версия Python для проверки совместимости
-target-version = "py314"
+target-version = "py312"
 # Сортировка импортов
 src = ["src", "tests"]
 # Максимальная длина строки

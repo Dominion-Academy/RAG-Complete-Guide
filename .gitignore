@@ -164,3 +164,5 @@ cython_debug/
 src/datasets/falcon_refined_web/data.csv
 src/datasets/falcon_refined_web/evaluation.csv
 src/modules/vector_search/vector_databases/milvus.db
+src/modules/evaluation/ragas_evals/datasets
+src/modules/evaluation/ragas_evals/experiments

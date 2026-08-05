@@ -1,12 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING
 
 from fastembed import SparseTextEmbedding, TextEmbedding
+import numpy as np
 from qdrant_client.models import SparseVector
-
-
-if TYPE_CHECKING:
-    import numpy as np
 
 
 class BaseEmbeddingsModel(ABC):
