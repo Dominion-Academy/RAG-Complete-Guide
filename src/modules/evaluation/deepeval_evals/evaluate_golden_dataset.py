@@ -46,7 +46,5 @@ for golden in dataset.goldens:
     dataset.add_test_case(test_case)
 
 evaluate(
-    test_cases=dataset.test_cases[:5],
-    metrics=RAG_TRIADE_METRICS,
-    async_config=AsyncConfig(max_concurrent=1, run_async=False)
+    test_cases=dataset.test_cases[:5], metrics=RAG_TRIADE_METRICS, async_config=AsyncConfig(max_concurrent=1, run_async=False)
 )

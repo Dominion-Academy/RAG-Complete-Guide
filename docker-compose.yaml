@@ -75,6 +75,39 @@ services:
     depends_on:
       - milvus
 
+  mlflow_db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+      POSTGRES_DB: mlflow
+    volumes:
+      - mlflow_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U mlflow" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: mlflow-server
+    restart: unless-stopped
+    depends_on:
+      mlflow_db:
+        condition: service_healthy
+    command: >
+      mlflow server
+      --backend-store-uri postgresql://mlflow:mlflow@mlflow_db:5432/mlflow
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5000
+    ports:
+      - "5000:5000"
+
 volumes:
   ollama_data:
   pg_data:
@@ -82,3 +115,4 @@ volumes:
   chroma_data:
   milvus_data:
   milvus_attu_data:
+  mlflow_db_data:
