@@ -1,6 +1,6 @@
 # RAG Complete Guide
 
-<img width="1319" height="362" alt="image" src="https://github.com/user-attachments/assets/4af60b9d-d9ca-4f0d-8070-c41cb9b47fc6" />
+<img width="1210" height="333" alt="image" src="https://github.com/user-attachments/assets/0dfdc50e-f6c2-47ac-b0e5-9b22e9bd144a" />
 
 
 ## Main topics
