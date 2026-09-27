@@ -108,6 +108,34 @@ services:
     ports:
       - "5000:5000"
 
+  neo4j:
+    image: neo4j:5.26
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/neo4j-password
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes:
+      - neo4j_data:/data
+
+  memgraph_core:
+    image: memgraph/memgraph-mage:latest
+    ports:
+      - "7600:7687"
+      - "7400:7444"
+    command: [ "--log-level=TRACE", "--schema-info-enabled=True" ]
+
+  memgraph_lab:
+    image: memgraph/lab:latest
+    ports:
+      - "3003:3000"
+    depends_on:
+      - memgraph_core
+    environment:
+      - QUICK_CONNECT_MG_HOST=memgraph_core
+      - QUICK_CONNECT_MG_PORT=7687
+
 volumes:
   ollama_data:
   pg_data:
@@ -116,3 +144,4 @@ volumes:
   milvus_data:
   milvus_attu_data:
   mlflow_db_data:
+  neo4j_data:

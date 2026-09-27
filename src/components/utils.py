@@ -11,6 +11,16 @@ def repair_json_string(text: str) -> str:
     return new_text
 
 
+def repair_cypher_string(text: str) -> str:
+    new_text = text[:]
+    if new_text.startswith("```cypher"):
+        text = text[len("```cypher") :]
+    if new_text.endswith("```"):
+        text = text[: -len("```")]
+    new_text = text.strip()
+    return new_text
+
+
 def deduplicate_documents(*documents_results: list[Document]) -> list[Document]:
     seen_doc_ids = set()
     final_documents = []

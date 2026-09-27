@@ -1,7 +1,7 @@
+import os
 import time
 from typing import Any, Literal
 
-import os
 import mlflow
 from mlflow.entities import Feedback
 from mlflow.genai.datasets import get_dataset
@@ -9,6 +9,7 @@ from mlflow.genai.judges import make_judge
 from mlflow.genai.scorers import scorer
 
 from src.modules.evaluation.rag_pipelines.simple import pipeline
+
 
 os.environ["MLFLOW_GENAI_EVAL_MAX_SCORER_WORKERS"] = "1"
 os.environ["MLFLOW_GENAI_EVAL_MAX_WORKERS"] = "1"
@@ -20,11 +21,10 @@ DATASET_ID = "d-0c4e5793dfb24d14b91d4a364ba8fe0f"
 greeting_check_judge = make_judge(
     name="greeting check",
     instructions=(
-        "Evaluate if the agent response included a greeting at the beginning of the response.\n\n"
-        "Agent's response: {{ outputs }}"
+        "Evaluate if the agent response included a greeting at the beginning of the response.\n\nAgent's response: {{ outputs }}"
     ),
     feedback_value_type=Literal["greeting_included", "greeting_not_included"],
-    model="gateway:/my-model"
+    model="gateway:/my-model",
 )
 
 

@@ -1169,6 +1169,19 @@ wheels = [
 ]
 
 [[package]]
+name = "gqlalchemy"
+version = "1.0.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "networkx" },
+    { name = "pymgclient" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/79/76/3027f89462270609fda9982e2e4e169276e676902152c650f5cf3318d7d7/GQLAlchemy-1.0.6.tar.gz", hash = "sha256:0c8444b4df442b8130f5d609b7fea193086cc7c366ed9223713d4b05fa52a266", size = 13555, upload-time = "2021-10-04T10:35:19.311Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/85/de/305aafec2caa580030700def6dcab080f4001ac3f6aea28ead97c8cdaa51/GQLAlchemy-1.0.6-py3-none-any.whl", hash = "sha256:b6fbc644e680f45df6a84c41bd1a38a4d2622f59b2d13e768a4169aa85670672", size = 17061, upload-time = "2021-10-04T10:35:17.357Z" },
+]
+
+[[package]]
 name = "graphene"
 version = "3.4.3"
 source = { registry = "https://pypi.org/simple" }
@@ -2482,6 +2495,18 @@ wheels = [
 ]
 
 [[package]]
+name = "neo4j"
+version = "6.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytz" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ce/f4/aaa4ac19adae4b01bc742b63afd2672a77e7351566f02721e713e4b863ee/neo4j-6.2.0.tar.gz", hash = "sha256:e1e246b65b572bd8ea97f9e0e721b7d40a5ce53e53d0007c29aef63e4f9124d9", size = 241459, upload-time = "2026-05-04T07:35:41.428Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/cf/1c3795866cefaac6e648d4e98c373cafd97810f6e317c307371007ab4abb/neo4j-6.2.0-py3-none-any.whl", hash = "sha256:b87abdd13a5cc2e3bd51026926c2f20ac38fa3febe98c340520dce19e97388d0", size = 327824, upload-time = "2026-05-04T07:35:39.604Z" },
+]
+
+[[package]]
 name = "nest-asyncio"
 version = "1.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2492,11 +2517,11 @@ wheels = [
 
 [[package]]
 name = "networkx"
-version = "3.6.1"
+version = "2.8.8"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6a/51/63fe664f3908c97be9d2e4f1158eb633317598cfa6e1fc14af5383f17512/networkx-3.6.1.tar.gz", hash = "sha256:26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509", size = 2517025, upload-time = "2025-12-08T17:02:39.908Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/16/c44e8550012735b8f21b3df7f39e8ba5a987fb764ac017ad5f3589735889/networkx-2.8.8.tar.gz", hash = "sha256:230d388117af870fce5647a3c52401fcf753e94720e6ea6b4197a5355648885e", size = 1960828, upload-time = "2022-11-01T20:31:52.02Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl", hash = "sha256:d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762", size = 2068504, upload-time = "2025-12-08T17:02:38.159Z" },
+    { url = "https://files.pythonhosted.org/packages/42/31/d2f89f1ae42718f8c8a9e440ebe38d7d5fe1e0d9eb9178ce779e365b3ab0/networkx-2.8.8-py3-none-any.whl", hash = "sha256:e435dfa75b1d7195c7b8378c3859f0445cd88c6b0375c181ed66823a9ceb7524", size = 2025192, upload-time = "2022-11-01T20:31:49.035Z" },
 ]
 
 [[package]]
@@ -3508,6 +3533,34 @@ wheels = [
 ]
 
 [[package]]
+name = "pymgclient"
+version = "1.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "networkx" },
+    { name = "pyopenssl" },
+    { name = "tzdata" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6a/f0/63ab674b99d9da5d6a5444b3975ed66d4c174533a2221d17697cd92ec665/pymgclient-1.6.0.tar.gz", hash = "sha256:9499b865355447c1ffb5a9a0c9e87eb718b9d2e83c743722b7414d17bf47d807", size = 166641, upload-time = "2026-07-20T11:03:43.919Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/de/86/da5d9f7ac150ebb5625cf31eb99d159e192fa7f3f02bd1864ab05f99648f/pymgclient-1.6.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:325f7e0b7796c3869f33044567ab1891387e1ec4f23057ac2ea80545e74c2ea9", size = 2521406, upload-time = "2026-07-20T11:03:20.163Z" },
+    { url = "https://files.pythonhosted.org/packages/f1/e5/a17e5b7e01df6f4effdd1da001fc31cebba8e5169a5a42f0c803e37ad89a/pymgclient-1.6.0-cp312-cp312-macosx_15_0_arm64.whl", hash = "sha256:cedfccd63a77b9c5cd5901c560cd7adee8ff78c2c837bd66b06732db567e6e21", size = 2534940, upload-time = "2026-07-20T11:03:21.509Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/cd/c3a2f4172b0ba6a8bb1a729cbb6c2d63d0873fd41c3d9bd11bd30694b265/pymgclient-1.6.0-cp312-cp312-manylinux_2_34_aarch64.whl", hash = "sha256:ee47f99e4f58d86407c7ce7395c028b580ac8b29fc24bb58e6dd0286b7ba9bda", size = 3293697, upload-time = "2026-07-20T11:03:23.311Z" },
+    { url = "https://files.pythonhosted.org/packages/5b/2d/696710243b8179d8b989b71cba469482df9283a4bc009bce8e76cb96575b/pymgclient-1.6.0-cp312-cp312-manylinux_2_34_x86_64.whl", hash = "sha256:fac84ad070dd7fae7f2fdadfb2c7dc3b05d20b5b0215f749e5ae9103eb18460a", size = 3016721, upload-time = "2026-07-20T11:03:25.047Z" },
+    { url = "https://files.pythonhosted.org/packages/40/b3/856cc1a3f69b4f4bed3e1b775906b7a72217d3f8dff2c51280b45e7a249b/pymgclient-1.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:b7da2602071e9a557365f02b4cd6b179413aaa811284ec2c12a82a3a851e35b7", size = 2285070, upload-time = "2026-07-20T11:03:26.537Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/39/a59ff5393fb6e4e1e3121732153b7cafffcf0b0ac2ede15ae5bfa3fbada1/pymgclient-1.6.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:0cc7333b6644c2d471cb1d3c5ae94363b1ff3ff5c882f79d5649d6377583262a", size = 2521408, upload-time = "2026-07-20T11:03:28.077Z" },
+    { url = "https://files.pythonhosted.org/packages/46/94/01c78999e71ba35ae4fae95b43e0beeab13f33fdc4c76fd88c49a65a3dd0/pymgclient-1.6.0-cp313-cp313-macosx_15_0_arm64.whl", hash = "sha256:beeb5cb99be794a02ba22dd6497763f37f3de220fba5951258c380dfe3d07c28", size = 2534945, upload-time = "2026-07-20T11:03:29.464Z" },
+    { url = "https://files.pythonhosted.org/packages/a3/10/3ad5ab8f3115eb20f2d147f233efaea74887824e6268a2d311e7ee16ef77/pymgclient-1.6.0-cp313-cp313-manylinux_2_34_aarch64.whl", hash = "sha256:b78a3abe428fc37c2b68631cd585bc5b1daa9b13775ff7a0544590674eecb1f1", size = 3293974, upload-time = "2026-07-20T11:03:31.131Z" },
+    { url = "https://files.pythonhosted.org/packages/40/d1/cfe20e749a559ae6d52b6808db9c3e70077dfebd505690b7a4f738692dcb/pymgclient-1.6.0-cp313-cp313-manylinux_2_34_x86_64.whl", hash = "sha256:b50aac94874a954d2bbf07e939d9130c03a0447ad721c7479133b71024a14dce", size = 3017213, upload-time = "2026-07-20T11:03:32.643Z" },
+    { url = "https://files.pythonhosted.org/packages/52/48/d3c0bb7f68d0244b0c0df0d41162cb74c95399549879732d8099a874debe/pymgclient-1.6.0-cp313-cp313-win_amd64.whl", hash = "sha256:a7b4ca46f6a2f6ae3b62a82a5c42318a6707c1e8af9d3f80f5ec2bc38af24b9d", size = 2285876, upload-time = "2026-07-20T11:03:34.551Z" },
+    { url = "https://files.pythonhosted.org/packages/21/3a/2a2d5c137ce070cac3d0112b8aa931d8543d823eede30c90f3812be401c7/pymgclient-1.6.0-cp314-cp314-macosx_14_0_arm64.whl", hash = "sha256:9cf8132981f1798a74aae4ef6f8295e822618d596bbff4f9ce516d6550043521", size = 2521471, upload-time = "2026-07-20T11:03:36.402Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/7d/1e3e45cd7c9661c7f8c4cb3b07ba6097ec8cba4957cf56f4cde022cb17b3/pymgclient-1.6.0-cp314-cp314-macosx_15_0_arm64.whl", hash = "sha256:ebf7feafdbcf4bfb0e2d1744dfb2943aedbfb61f6dfee3b41108d86f4d9814a1", size = 2534994, upload-time = "2026-07-20T11:03:37.733Z" },
+    { url = "https://files.pythonhosted.org/packages/90/59/5ba6a83262ee2bd7f5ac132deda3edf396b20dcc800852384e6e38e2eb1d/pymgclient-1.6.0-cp314-cp314-manylinux_2_34_aarch64.whl", hash = "sha256:23a2e1c24184167c04ed4d87fac2aaaec1bb86a948f1a72bf398faf8fcb7cb54", size = 3294076, upload-time = "2026-07-20T11:03:39.397Z" },
+    { url = "https://files.pythonhosted.org/packages/54/3d/9ee5cf0070a0fcd3fe79493023bccf7de53bb1f239628625ff3d5447ed8a/pymgclient-1.6.0-cp314-cp314-manylinux_2_34_x86_64.whl", hash = "sha256:4368dee53bd7e2a6663e704097f235f1e0b27b03a4012e5b5749ec9451b55a0d", size = 3016907, upload-time = "2026-07-20T11:03:40.846Z" },
+    { url = "https://files.pythonhosted.org/packages/77/19/2078a1965310da2d7c98479d08193175663ac0afd33773a898369c935286/pymgclient-1.6.0-cp314-cp314-win_amd64.whl", hash = "sha256:660d40b32b6a5d81fb5f58c005e2d2546a3ee04d97398fc1ef3a046ae4c70458", size = 2359941, upload-time = "2026-07-20T11:03:42.364Z" },
+]
+
+[[package]]
 name = "pymilvus"
 version = "3.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -3528,6 +3581,19 @@ wheels = [
 [package.optional-dependencies]
 milvus-lite = [
     { name = "milvus-lite", marker = "sys_platform != 'win32'" },
+]
+
+[[package]]
+name = "pyopenssl"
+version = "26.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cryptography" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3f/e8/7325d258199b159eb2c03fe32107533e2832e70e63f4fb88a6aa00023201/pyopenssl-26.4.0.tar.gz", hash = "sha256:28dfcce0162b9211413e26dfbfdf1d24317fbeba18fc93c12400a1856b2a0bc7", size = 182046, upload-time = "2026-08-01T19:50:50.512Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/ad/2cf6d3fa2fae5c79e1ed9960c0d42badd0f94d81dd12b50604cdc839e648/pyopenssl-26.4.0-py3-none-any.whl", hash = "sha256:f0eb0cb2d581d3ad2b9c489468485e7f2ab6727d08401bcf9d824c3caddf3c1c", size = 56026, upload-time = "2026-08-01T19:50:48.94Z" },
 ]
 
 [[package]]
@@ -3762,10 +3828,12 @@ dependencies = [
     { name = "deepeval" },
     { name = "faiss-cpu" },
     { name = "fastembed" },
+    { name = "gqlalchemy" },
     { name = "langchain-community" },
     { name = "langchain-text-splitters" },
     { name = "milvus-lite" },
     { name = "mlflow" },
+    { name = "neo4j" },
     { name = "nltk" },
     { name = "numpy" },
     { name = "ollama" },
@@ -3792,10 +3860,12 @@ requires-dist = [
     { name = "deepeval", specifier = ">=4.1.5" },
     { name = "faiss-cpu", specifier = ">=1.14.3" },
     { name = "fastembed", specifier = ">=0.8.0" },
+    { name = "gqlalchemy", specifier = ">=1.0.6" },
     { name = "langchain-community", specifier = "<0.4" },
     { name = "langchain-text-splitters", specifier = ">=1.1.2" },
     { name = "milvus-lite", specifier = ">=3.0" },
     { name = "mlflow", specifier = ">=3.15.1" },
+    { name = "neo4j", specifier = ">=6.2.0" },
     { name = "nltk", specifier = ">=3.10.0" },
     { name = "numpy", specifier = ">=2.4.6" },
     { name = "ollama", specifier = ">=0.6.2" },
