@@ -124,6 +124,8 @@ services:
     ports:
       - "7600:7687"
       - "7400:7444"
+    environment:
+      MGCONSOLE: "--username memgraph --password memgraph-password"
     command: [ "--log-level=TRACE", "--schema-info-enabled=True" ]
 
   memgraph_lab:

@@ -1,17 +1,13 @@
-from pprint import pprint
+from gqlalchemy import Memgraph
 
-from neo4j import GraphDatabase
+memgraph = Memgraph(host="127.0.0.1", port=7600, username="memgraph", password="memgraph-password")
 
+memgraph.execute("MATCH (n) DETACH DELETE n")
 
-driver = GraphDatabase.driver(
-    "bolt://localhost:7600",
-)
-
-driver.verify_connectivity()
-
-with driver.session() as session:
-    result = session.run("""
-SHOW SCHEMA INFO
-    """)
-    record = result.single()
-    pprint(record)
+query = """
+CREATE (n:FirstNode)
+SET n.message = 'Hello, World!'
+RETURN n.message AS result
+"""
+results = memgraph.execute_and_fetch(query)
+print(list(results)[0]['result'])
