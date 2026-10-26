@@ -3,7 +3,7 @@ import pandas as pd
 import psycopg2
 
 from src.components.embeddings import FastEmbedEmbeddingsModel
-from src.settings import DATASETS_DIR
+from src.settings import DATASETS_DIR, settings
 
 
 # 1. Загружаем данные и получаем эмбеддинги
@@ -18,7 +18,7 @@ query_embedding = embeddings_model.embed_query(query)
 
 
 # 2. Подключаемся к базе данных
-conn = psycopg2.connect(host="localhost", port=5432, dbname="postgres", user="postgres", password="password")
+conn = psycopg2.connect(**settings.postgres.connect_kwargs())
 conn.autocommit = True
 cur = conn.cursor()
 

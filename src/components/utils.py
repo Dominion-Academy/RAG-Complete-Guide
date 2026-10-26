@@ -21,6 +21,17 @@ def repair_cypher_string(text: str) -> str:
     return new_text
 
 
+def repair_sql_string(text: str) -> str:
+    new_text = text.strip()
+    if new_text.startswith("```sql"):
+        new_text = new_text[len("```sql") :]
+    elif new_text.startswith("```"):
+        new_text = new_text[len("```") :]
+    if new_text.endswith("```"):
+        new_text = new_text[: -len("```")]
+    return new_text.strip()
+
+
 def deduplicate_documents(*documents_results: list[Document]) -> list[Document]:
     seen_doc_ids = set()
     final_documents = []
