@@ -25,6 +25,7 @@ dependencies = [
     "psycopg2>=2.9.12",
     "pydantic-settings>=2.14.1",
     "pymilvus[milvus-lite]>=3.0.0",
+    "pyyaml>=6.0.3",
     "qdrant-client>=1.18.0",
     "ragas==0.3.9",
     "rank-bm25>=0.2.2",

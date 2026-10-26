@@ -18,7 +18,7 @@ try:
         common_parameters={"temperature": 0},
     )
     sql_rag = SQLRAG(executor, extractor, llm)
-    answer = sql_rag.generate("Какие три категории товаров принесли больше всего выручки?")
+    answer = sql_rag.generate("Какая выручка у постоянных клиентов из Германии за 2025 год?")
     print("\nОтвет: ", answer.content)
 finally:
     conn.close()

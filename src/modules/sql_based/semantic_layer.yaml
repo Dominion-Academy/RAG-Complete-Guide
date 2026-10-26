@@ -1,0 +1,243 @@
+# Семантический слой интернет-магазина
+
+# Общие правила диалекта и стиля: всегда попадают в контекст целиком.
+rules:
+  - Use PostgreSQL version 17 syntax.
+  - Write dates in ISO format (YYYY-MM-DD).
+  - Always add LIMIT 100.
+  - Text values in the database are stored in English, lowercase for statuses and payment methods.
+
+# Описание таблиц и колонок: на их основе строится поисковый документ таблицы.
+tables:
+  countries:
+    description: Справочник стран; в стране живут клиенты и находятся поставщики
+    synonyms: [страна, страны, государство, регион мира, country, nation, region]
+    columns:
+      id: идентификатор страны
+      name: название страны на английском (Germany, France, Russia, USA)
+      region: регион мира (Europe, Asia, North America, South America)
+  customers:
+    description: Клиенты магазина (покупатели); у каждого клиента одна страна
+    synonyms: [клиент, клиенты, покупатель, покупатели, заказчик, пользователь, customer, buyer, user]
+    columns:
+      id: идентификатор клиента
+      first_name: имя клиента
+      last_name: фамилия клиента
+      email: электронная почта клиента
+      country_id: страна клиента
+      registered_at: дата регистрации клиента
+  categories:
+    description: Категории товаров; категории образуют иерархию (родительская и дочерняя категория)
+    synonyms: [категория, категории, раздел каталога, группа товаров, category, product group]
+    columns:
+      id: идентификатор категории
+      name: название категории (Electronics, Smartphones, Laptops, Home, Kitchen, Furniture, Books)
+      parent_id: родительская категория; NULL у корневых категорий
+  suppliers:
+    description: Поставщики товаров; у каждого поставщика одна страна
+    synonyms: [поставщик, поставщики, производитель, вендор, supplier, vendor]
+    columns:
+      id: идентификатор поставщика
+      name: название поставщика
+      country_id: страна поставщика
+  products:
+    description: Каталог товаров с ценой и остатком на складе; товар относится к категории и поставщику
+    synonyms: [товар, товары, продукт, продукты, каталог, остаток на складе, цена товара, product, item, goods, stock]
+    columns:
+      id: идентификатор товара
+      name: название товара
+      category_id: категория товара
+      supplier_id: поставщик товара
+      price: текущая цена товара за единицу
+      stock: остаток товара на складе, штук
+  orders:
+    description: Заказы клиентов; один заказ принадлежит одному клиенту и состоит из позиций
+    synonyms: [заказ, заказы, покупка, покупки, продажа, продажи, оформленные заказы, order, purchase, sale]
+    columns:
+      id: идентификатор заказа
+      customer_id: клиент, сделавший заказ
+      status: статус заказа, хранится на английском в нижнем регистре (new, paid, shipped, delivered, cancelled)
+      created_at: дата и время оформления заказа
+  order_items:
+    description: Позиции заказов; сколько единиц какого товара куплено и по какой цене
+    synonyms: [позиция заказа, позиции заказов, состав заказа, проданные товары, количество проданных единиц, order item, line item, quantity]
+    columns:
+      id: идентификатор позиции
+      order_id: заказ, которому принадлежит позиция
+      product_id: купленный товар
+      quantity: количество единиц товара в позиции
+      unit_price: цена одной единицы на момент покупки
+  payments:
+    description: Платежи по заказам; у оплаченного заказа один платёж с суммой и способом оплаты
+    synonyms: [платёж, платежи, оплата, оплаты, способ оплаты, сумма оплаты, payment, payment method, paid amount]
+    columns:
+      id: идентификатор платежа
+      order_id: оплаченный заказ
+      method: способ оплаты, на английском в нижнем регистре (card, paypal, bank_transfer)
+      amount: сумма платежа, равна стоимости всех позиций заказа
+      paid_at: дата и время платежа
+  reviews:
+    description: Отзывы клиентов о товарах с оценкой от 1 до 5 и комментарием
+    synonyms: [отзыв, отзывы, оценка, оценки, рейтинг, комментарий, review, rating, feedback]
+    columns:
+      id: идентификатор отзыва
+      product_id: товар, о котором отзыв
+      customer_id: клиент, оставивший отзыв
+      rating: оценка от 1 до 5
+      comment: текст отзыва, может быть пустым
+      created_at: дата и время отзыва
+
+# Метрики: формулу описывает человек один раз, модель выбирает готовую.
+metrics:
+  - name: revenue
+    description: Выручка по заказам, которые оплачены и не отменены; считается по позициям заказов
+    sql: SUM(order_items.quantity * order_items.unit_price)
+    filters: ["orders.status IN ('paid', 'shipped', 'delivered')"]
+    synonyms: [выручка, оборот, доход, продажи в деньгах, revenue, turnover, sales]
+  - name: orders_count
+    description: Количество заказов (по умолчанию без отменённых)
+    sql: COUNT(DISTINCT orders.id)
+    filters: ["orders.status <> 'cancelled'"]
+    synonyms: [количество заказов, число заказов, сколько заказов, orders count]
+  - name: average_order_value
+    description: Средний чек, то есть средняя стоимость оплаченного заказа
+    sql: AVG(payments.amount)
+    filters: ["orders.status IN ('paid', 'shipped', 'delivered')"]
+    synonyms: [средний чек, средняя сумма заказа, average order value, aov]
+  - name: units_sold
+    description: Количество проданных единиц товара в оплаченных заказах
+    sql: SUM(order_items.quantity)
+    filters: ["orders.status IN ('paid', 'shipped', 'delivered')"]
+    synonyms: [продано штук, количество проданных товаров, популярность товара, units sold]
+  - name: average_rating
+    description: Средняя оценка товара по отзывам
+    sql: AVG(reviews.rating)
+    filters: []
+    synonyms: [средний рейтинг, средняя оценка, рейтинг товара, average rating]
+
+# Измерения: по чему можно группировать и фильтровать.
+dimensions:
+  - name: country
+    description: Страна клиента
+    sql: countries.name (через customers.country_id = countries.id)
+    synonyms: [страна, из какой страны, по странам, country]
+  - name: region
+    description: Регион мира клиента
+    sql: countries.region (через customers.country_id = countries.id)
+    synonyms: [регион, континент, по регионам, region]
+  - name: category
+    description: Категория товара
+    sql: categories.name (через products.category_id = categories.id)
+    synonyms: [категория, по категориям, категория товаров, category]
+  - name: month
+    description: Месяц оформления заказа
+    sql: date_trunc('month', orders.created_at)
+    synonyms: [месяц, по месяцам, помесячно, month]
+  - name: year
+    description: Год оформления заказа
+    sql: EXTRACT(YEAR FROM orders.created_at)
+    synonyms: [год, по годам, year]
+  - name: payment_method
+    description: Способ оплаты
+    sql: payments.method
+    synonyms: [способ оплаты, метод оплаты, по способам оплаты, payment method]
+  - name: supplier
+    description: Поставщик товара
+    sql: suppliers.name (через products.supplier_id = suppliers.id)
+    synonyms: [поставщик, по поставщикам, supplier]
+
+# Бизнес-глоссарий.
+glossary:
+  - term: покупатель
+    definition: Покупатель, клиент и customer это одно и то же; данные лежат в таблице customers
+    synonyms: [клиент, customer, buyer]
+  - term: активный клиент
+    definition: Клиент, у которого есть хотя бы один неотменённый заказ за последние 90 дней
+    sql: customers.id IN (SELECT customer_id FROM orders WHERE status <> 'cancelled' AND created_at >= CURRENT_DATE - INTERVAL '90 days')
+    synonyms: [активные клиенты, активные покупатели, active customer]
+  - term: повторная покупка
+    definition: Клиент, у которого два и более неотменённых заказа
+    sql: "SELECT customer_id FROM orders WHERE status <> 'cancelled' GROUP BY customer_id HAVING COUNT(*) >= 2"
+    synonyms: [повторные покупки, постоянные клиенты, вернувшиеся клиенты, repeat purchase]
+  - term: оплаченный заказ
+    definition: Заказ со статусом paid, shipped или delivered; статусы new и cancelled не считаются оплаченными
+    sql: orders.status IN ('paid', 'shipped', 'delivered')
+    synonyms: [оплаченные заказы, оплачен, paid order]
+
+# Проверенные пары вопрос-SQL. Индексируется только вопрос.
+examples:
+  - question: Сколько заказов было оформлено в 2025 году?
+    sql: |
+      SELECT COUNT(*) AS orders_count
+      FROM orders
+      WHERE created_at >= '2025-01-01' AND created_at < '2026-01-01';
+  - question: Какая выручка по месяцам за 2025 год?
+    sql: |
+      SELECT date_trunc('month', o.created_at)::date AS month,
+             SUM(oi.quantity * oi.unit_price) AS revenue
+      FROM orders o
+      JOIN order_items oi ON oi.order_id = o.id
+      WHERE o.status IN ('paid', 'shipped', 'delivered')
+        AND o.created_at >= '2025-01-01' AND o.created_at < '2026-01-01'
+      GROUP BY 1
+      ORDER BY 1
+      LIMIT 100;
+  - question: Топ-5 клиентов по сумме покупок
+    sql: |
+      SELECT c.id, c.first_name, c.last_name, SUM(oi.quantity * oi.unit_price) AS total_spent
+      FROM customers c
+      JOIN orders o ON o.customer_id = c.id
+      JOIN order_items oi ON oi.order_id = o.id
+      WHERE o.status IN ('paid', 'shipped', 'delivered')
+      GROUP BY c.id, c.first_name, c.last_name
+      ORDER BY total_spent DESC
+      LIMIT 5;
+  - question: Сколько клиентов в каждой стране?
+    sql: |
+      SELECT co.name AS country, COUNT(*) AS customers_count
+      FROM customers c
+      JOIN countries co ON co.id = c.country_id
+      GROUP BY co.name
+      ORDER BY customers_count DESC
+      LIMIT 100;
+  - question: Какой средний рейтинг у товаров в каждой категории?
+    sql: |
+      SELECT cat.name AS category, ROUND(AVG(r.rating), 2) AS average_rating
+      FROM reviews r
+      JOIN products p ON p.id = r.product_id
+      JOIN categories cat ON cat.id = p.category_id
+      GROUP BY cat.name
+      ORDER BY average_rating DESC
+      LIMIT 100;
+  - question: Какие товары почти закончились на складе?
+    sql: |
+      SELECT id, name, stock
+      FROM products
+      WHERE stock < 20
+      ORDER BY stock
+      LIMIT 100;
+  - question: Сколько платежей и на какую сумму прошло по каждому способу оплаты?
+    sql: |
+      SELECT method, COUNT(*) AS payments_count, SUM(amount) AS total_amount
+      FROM payments
+      GROUP BY method
+      ORDER BY total_amount DESC
+      LIMIT 100;
+  - question: Покажи доставленные заказы из Франции
+    sql: |
+      SELECT o.*
+      FROM orders o
+      JOIN customers c ON c.id = o.customer_id
+      JOIN countries co ON co.id = c.country_id
+      WHERE co.name = 'France' AND o.status = 'delivered'
+      LIMIT 100;
+
+# Колонки, по значениям которых ищем упоминания из вопроса (таблица.колонка).
+value_columns:
+  - countries.name
+  - countries.region
+  - categories.name
+  - orders.status
+  - payments.method
+  - products.name
+  - suppliers.name

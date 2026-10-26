@@ -30,7 +30,7 @@ class SQLRAG:
         self._llm = llm
 
     def _retrieve(self, query: str) -> list[dict]:
-        db_schema = self._schema_extractor.get_schema_text()
+        db_schema = self._schema_extractor.get_schema_text(query=query)
         prompt = self.GEN_SQL_PROMPT.substitute({"query": query, "db_schema": db_schema})
         sql = (self._llm.generate_answer([InputMessage(role="user", content=prompt)])).content
         repaired_sql = repair_sql_string(sql)
